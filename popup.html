@@ -12,10 +12,17 @@
     <button id="reset">Reset Data</button>
 
     <h2>Custom Distraction Sites</h2>
-    <textarea id="custom-sites" rows="4" cols="30" readonly></textarea>
+
+    <!-- Shows the list of distraction sites -->
+    <label for="custom-sites">Your Distraction List:</label>
+    <textarea id="custom-sites" rows="4" cols="30"></textarea>
+
+    <!-- Allows users to add a single site manually -->
+    <label for="site-input">Add a new site:</label>
     <input type="text" id="site-input" placeholder="Enter site (e.g., example.com)">
     <button id="add-site">Add Site</button>
-    <button id="clear-sites">Clear Sites</button>
+    <button id="clear-sites">Clear All Sites</button>
+
 
     <script src="popup.js"></script>
 </body>

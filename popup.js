@@ -26,12 +26,32 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Load distraction sites into the popup
-    chrome.storage.local.get(["distractionSites"], (data) => {
-        let sites = data.distractionSites || [];
-        document.getElementById("custom-sites").value = sites.join("\n");
+    function loadCustomSites() {
+        chrome.storage.local.get(["distractionSites"], (data) => {
+            let sites = data.distractionSites || [];
+            document.getElementById("custom-sites").value = sites.join("\n");
+        });
+    }
+    
+    document.addEventListener("DOMContentLoaded", () => {
+        loadCustomSites(); // Load sites when popup opens
+    
+        document.getElementById("custom-sites").addEventListener("input", () => {
+            let siteList = document.getElementById("custom-sites").value.split("\n").map(site => site.trim()).filter(site => site);
+            chrome.storage.local.set({ distractionSites: siteList }, () => {
+                console.log("✅ Custom distraction sites updated:", siteList);
+            });
+        });
+    
+        document.getElementById("clear-sites").addEventListener("click", () => {
+            chrome.storage.local.set({ distractionSites: [] }, () => {
+                console.log("🗑️ Cleared all custom distraction sites.");
+                document.getElementById("custom-sites").value = "";
+            });
+        });
     });
-
+    
+    
     // Add a new distraction site
     document.getElementById("add-site").addEventListener("click", () => {
         let newSite = document.getElementById("site-input").value.trim();

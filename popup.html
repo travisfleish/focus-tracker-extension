@@ -8,8 +8,15 @@
 </head>
 <body>
     <h1>Focus Tracker</h1>
-    <p id="status">Tracking your focus...</p>
+    <p id="status">Loading...</p>
     <button id="reset">Reset Data</button>
+
+    <h2>Custom Distraction Sites</h2>
+    <textarea id="custom-sites" rows="4" cols="30" readonly></textarea>
+    <input type="text" id="site-input" placeholder="Enter site (e.g., example.com)">
+    <button id="add-site">Add Site</button>
+    <button id="clear-sites">Clear Sites</button>
+
     <script src="popup.js"></script>
 </body>
 </html>
